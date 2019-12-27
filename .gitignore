@@ -1,3 +1,10 @@
+#Ignore the build and lib dirs
+build
+lib/*
+
+#Ignore executables
+bin/*
+
 # Prerequisites
 *.d
 
