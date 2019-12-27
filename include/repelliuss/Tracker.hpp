@@ -7,13 +7,14 @@ namespace rps {
 
 	public:
 		Tracker() : tracked_count(1) {}
+		virtual ~Tracker() {}
 
 		int get_tracked_count() const noexcept { return tracked_count; }
 		void increase() noexcept { ++tracked_count; }
 		void decrease() noexcept { --tracked_count; }
 
 		virtual void destroy() = 0;
-		virtual ~Tracker() {}
+		virtual void* tracking() const noexcept = 0;
 
 	private:
 		int tracked_count;

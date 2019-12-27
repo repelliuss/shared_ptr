@@ -13,7 +13,7 @@ namespace rps {
 			data(arg_data), deleter(arg_deleter) {}
 
 		void destroy() override { deleter(data); }
-
+		void* tracking() const noexcept override { return data; }
 	private:
 		T *data;
 		Deleter deleter;
