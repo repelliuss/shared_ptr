@@ -25,6 +25,26 @@ namespace rps {
 
 		~shared_ptr() { remove(); }
 
+		bool unique() const noexcept { return tracker->get_tracked_count(); }
+
+		void reset() noexcept { remove(); }
+		void reset(T *data) noexcept {
+			remove();
+			tracker = new MemoryManager<T, default_deleter<T>>(data, default_deleter<T>());
+		}
+
+		template<class Deleter>
+		void reset(T *data, Deleter deleter) {
+			remove();
+			tracker = new MemoryManager<T, Deleter>(data, deleter);
+		}
+
+		long int use_count() const noexcept {
+			return tracker->get_tracked_count();
+		}
+
+		T* get() const noexcept { return tracker->tracking(); }
+
 		shared_ptr& operator=(const shared_ptr& other) {
 
 			if(this != &other) {
