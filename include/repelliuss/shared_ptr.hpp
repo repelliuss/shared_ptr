@@ -14,10 +14,12 @@ namespace rps {
 	public:
 		shared_ptr() : tracker(nullptr) {}
 		
-		explicit shared_ptr(T *data) : tracker(new MemoryManager<T, default_deleter<T>>(data, default_deleter<T>())) {}
+		explicit shared_ptr(T *data) :
+			tracker(new MemoryManager<T, default_deleter<T>>(data, default_deleter<T>())) {}
 
 		template<class Deleter>
-		shared_ptr(T *data, Deleter deleter) : tracker(new MemoryManager<T, Deleter>(data, deleter)) {}
+		shared_ptr(T *data, Deleter deleter) :
+			tracker(new MemoryManager<T, Deleter>(data, deleter)) {}
 
 		shared_ptr(const shared_ptr &other) : tracker(other.tracker) { add(); }
 
@@ -34,15 +36,16 @@ namespace rps {
 			return *this;
 		}
 
-		T* operator->() const noexcept { return (T*)(tracker->tracking()); }
+		T* operator->() const noexcept { return tracker->tracking(); }
 
-		T& operator*() const {
-			if(tracker) return *((T*)(tracker->tracking()));
-			else throw std::bad_function_call();
+		T& operator*() const noexcept { return *(tracker->tracking()); }
+
+		explicit operator bool() const noexcept {
+			return tracker->tracking() == nullptr ? false : true;
 		}
 
 	private:
-		Tracker *tracker;
+		Tracker<T> *tracker;
 
 		void add() noexcept { if(tracker) tracker->increase(); }
 
