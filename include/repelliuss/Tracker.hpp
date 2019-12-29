@@ -3,6 +3,7 @@
 
 namespace rps {
 
+	template<class T>
 	class Tracker {
 
 	public:
@@ -14,7 +15,7 @@ namespace rps {
 		void decrease() noexcept { --tracked_count; }
 
 		virtual void destroy() = 0;
-		virtual void* tracking() const noexcept = 0;
+		virtual T* tracking() const noexcept = 0;
 
 	private:
 		int tracked_count;
