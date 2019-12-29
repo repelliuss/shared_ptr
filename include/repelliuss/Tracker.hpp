@@ -18,7 +18,7 @@ namespace rps {
 		virtual T* tracking() const noexcept = 0;
 
 	private:
-		int tracked_count;
+		long int tracked_count;
 	};
 }
 
