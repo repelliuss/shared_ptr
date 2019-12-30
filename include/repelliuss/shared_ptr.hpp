@@ -25,7 +25,7 @@ namespace rps {
 
 		~shared_ptr() { remove(); }
 
-		bool unique() const noexcept { return tracker->get_tracked_count(); }
+		bool unique() const noexcept { return tracker->get_tracked_count() == 1; }
 
 		void reset() noexcept { remove(); }
 		void reset(T *data) noexcept {
