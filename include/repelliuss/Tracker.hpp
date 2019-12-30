@@ -10,7 +10,7 @@ namespace rps {
 		Tracker() : tracked_count(1) {}
 		virtual ~Tracker() {}
 
-		int get_tracked_count() const noexcept { return tracked_count; }
+		long get_tracked_count() const noexcept { return tracked_count; }
 		void increase() noexcept { ++tracked_count; }
 		void decrease() noexcept { --tracked_count; }
 
@@ -18,7 +18,7 @@ namespace rps {
 		virtual T* tracking() const noexcept = 0;
 
 	private:
-		long int tracked_count;
+		long tracked_count;
 	};
 }
 

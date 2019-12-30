@@ -42,7 +42,7 @@ namespace rps {
 			tracker = new MemoryManager<T, Deleter>(data, deleter);
 		}
 
-		long int use_count() const noexcept {
+		long use_count() const noexcept {
 			return tracker == nullptr ?
 				0 : tracker->get_tracked_count();
 		}
