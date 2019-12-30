@@ -25,7 +25,10 @@ namespace rps {
 
 		~shared_ptr() { remove(); }
 
-		bool unique() const noexcept { return tracker->get_tracked_count() == 1; }
+		bool unique() const noexcept {
+			return tracker == nullptr ?
+				false : tracker->get_tracked_count() == 1;
+		}
 
 		void reset() noexcept { remove(); }
 		void reset(T *data) noexcept {
@@ -40,10 +43,13 @@ namespace rps {
 		}
 
 		long int use_count() const noexcept {
-			return tracker->get_tracked_count();
+			return tracker == nullptr ?
+				0 : tracker->get_tracked_count();
 		}
 
-		T* get() const noexcept { return tracker->tracking(); }
+		T* get() const noexcept { return tracker == nullptr ?
+				nullptr : tracker->tracking();
+		}
 
 		shared_ptr& operator=(const shared_ptr& other) {
 
@@ -56,12 +62,17 @@ namespace rps {
 			return *this;
 		}
 
-		T* operator->() const noexcept { return tracker->tracking(); }
+		T* operator->() const noexcept { return tracker == nullptr ?
+				nullptr : tracker->tracking();
+		}
 
+		//you never want to dereference null, do you?
 		T& operator*() const noexcept { return *(tracker->tracking()); }
 
 		explicit operator bool() const noexcept {
-			return tracker->tracking() == nullptr ? false : true;
+			if(tracker)
+				return tracker->tracking() == nullptr ? false : true;
+			return false;
 		}
 
 	private:
