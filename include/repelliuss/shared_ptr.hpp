@@ -4,7 +4,7 @@
 #include "Tracker.hpp"
 #include "MemoryManager.hpp"
 #include "default_deleter.hpp"
-#include <functional>
+#include <cstddef> //for nullptr_t
 
 namespace rps {
 
@@ -91,6 +91,76 @@ namespace rps {
 			}
 		}
 	};
+
+	template<class T>
+	bool operator==(const shared_ptr<T> &l, const shared_ptr<T> &r) noexcept {
+		return l.get() == r.get();
+	}
+
+	template<class T>
+	bool operator==(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() == nullptr;
+	}
+
+	template <class T>
+	bool operator==(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr = r.get();
+	}
+
+	template<class T>
+	bool operator!=(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() != nullptr;
+	}
+
+	template<class T>
+	bool operator!=(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr != r.get();
+	}
+
+	template<class T>
+	bool operator<(const shared_ptr<T> &l, const shared_ptr<T> &r) noexcept {
+		return l.get() < r.get();
+	}
+
+	template<class T>
+	bool operator<(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() < nullptr;
+	}
+
+	template<class T>
+	bool operator<(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr < r.get();
+	}
+
+	template<class T>
+	bool operator<=(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() <= nullptr;
+	}
+
+	template<class T>
+	bool operator<=(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr <= r.get();
+	}
+
+	template<class T>
+	bool operator>(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() > nullptr;
+	}
+
+	template<class T>
+	bool operator>(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr > r.get();
+	}
+
+	template<class T>
+	bool operator>=(const shared_ptr<T> &l, std::nullptr_t) noexcept {
+		return l.get() >= nullptr;
+	}
+
+	template<class T>
+	bool operator>=(std::nullptr_t, const shared_ptr<T> &r) noexcept {
+		return nullptr >= r.get();
+	}
 }
 
 #endif // _SHARED_PTR_H_
