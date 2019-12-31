@@ -3,7 +3,7 @@
 
 #include "Tracker.hpp"
 #include "MemoryManager.hpp"
-#include "default_deleter.hpp"
+#include "default_delete.hpp"
 #include <cstddef> //for nullptr_t
 
 namespace rps {
@@ -15,7 +15,7 @@ namespace rps {
 		shared_ptr() : tracker(nullptr) {}
 		
 		explicit shared_ptr(T *data) :
-			tracker(new MemoryManager<T, default_deleter<T>>(data, default_deleter<T>())) {}
+			tracker(new MemoryManager<T, default_delete<T>>(data, default_delete<T>())) {}
 
 		template<class Deleter>
 		shared_ptr(T *data, Deleter deleter) :
@@ -33,7 +33,7 @@ namespace rps {
 		void reset() noexcept { remove(); }
 		void reset(T *data) noexcept {
 			remove();
-			tracker = new MemoryManager<T, default_deleter<T>>(data, default_deleter<T>());
+			tracker = new MemoryManager<T, default_delete<T>>(data, default_delete<T>());
 		}
 
 		template<class Deleter>
