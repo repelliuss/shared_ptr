@@ -14,7 +14,9 @@ namespace rps {
 
 	public:
 		constexpr shared_ptr() : tracker(nullptr) {}
-		
+
+		constexpr shared_ptr(std::nullptr_t) : tracker(nullptr) {}
+
 		explicit shared_ptr(T *data) :
 			tracker(new MemoryManager<T, default_delete<T>>(data, default_delete<T>())) {}
 
