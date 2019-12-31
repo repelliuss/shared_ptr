@@ -23,6 +23,9 @@ namespace rps {
 
 		shared_ptr(const shared_ptr &other) : tracker(other.tracker) { add(); }
 
+		shared_ptr(shared_ptr &&other) :
+			tracker(other.tracker) { other.tracker = nullptr; }
+
 		~shared_ptr() { remove(); }
 
 		bool unique() const noexcept {
@@ -51,12 +54,23 @@ namespace rps {
 				nullptr : tracker->tracking();
 		}
 
-		shared_ptr& operator=(const shared_ptr& other) {
+		shared_ptr& operator=(const shared_ptr &other) {
 
 			if(this != &other) {
 				remove();
 				tracker = other.tracker;
 				add();
+			}
+
+			return *this;
+		}
+
+		shared_ptr& operator=(shared_ptr &&other) {
+
+			if(this != &other) {
+				remove();
+				tracker = other.tracker;
+				other.tracker = nullptr;
 			}
 
 			return *this;
