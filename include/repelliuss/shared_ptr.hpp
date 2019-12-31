@@ -5,7 +5,7 @@
 #include "MemoryManager.hpp"
 #include "default_delete.hpp"
 #include <cstddef> //for nullptr_t
-#include <ostream>
+#include <ostream> //for basic_ostream
 
 namespace rps {
 
@@ -71,6 +71,10 @@ namespace rps {
 			}
 
 			return *this;
+		}
+
+		bool owner_before(const shared_ptr &other) const noexcept {
+			return tracker == other.tracker;
 		}
 
 		shared_ptr& operator=(shared_ptr &&other) {
