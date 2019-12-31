@@ -114,6 +114,11 @@ namespace rps {
 	};
 
 	template<class T>
+	void swap(shared_ptr<T> &left, shared_ptr<T> &right) noexcept {
+		left.swap(right);
+	}
+
+	template<class T>
 	bool operator==(const shared_ptr<T> &l, const shared_ptr<T> &r) noexcept {
 		return l.get() == r.get();
 	}
