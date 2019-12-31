@@ -13,7 +13,7 @@ namespace rps {
 	class shared_ptr {
 
 	public:
-		shared_ptr() : tracker(nullptr) {}
+		constexpr shared_ptr() : tracker(nullptr) {}
 		
 		explicit shared_ptr(T *data) :
 			tracker(new MemoryManager<T, default_delete<T>>(data, default_delete<T>())) {}
