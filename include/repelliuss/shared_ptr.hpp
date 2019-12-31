@@ -120,10 +120,11 @@ namespace rps {
 	}
 
 	template<class charT, class traits, class T>
-	std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits> &os,
-											 const shared_ptr<T> &myself) {
-		os << myself.get();
-		return os;
+	std::basic_ostream<charT, traits>&
+	operator<<(std::basic_ostream<charT, traits> &os,
+			   const shared_ptr<T> &myself) {
+			os << myself.get();
+			return os;
 	}
 
 	template<class T>
