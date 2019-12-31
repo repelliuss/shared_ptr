@@ -54,6 +54,13 @@ namespace rps {
 				nullptr : tracker->tracking();
 		}
 
+		void swap(shared_ptr &other) noexcept {
+
+			Tracker<T> *temp = tracker;
+			tracker = other.tracker;
+			other.tracker = tracker;
+		}
+
 		shared_ptr& operator=(const shared_ptr &other) {
 
 			if(this != &other) {
