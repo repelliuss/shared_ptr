@@ -5,6 +5,7 @@
 #include "MemoryManager.hpp"
 #include "default_delete.hpp"
 #include <cstddef> //for nullptr_t
+#include <ostream>
 
 namespace rps {
 
@@ -116,6 +117,13 @@ namespace rps {
 	template<class T>
 	void swap(shared_ptr<T> &left, shared_ptr<T> &right) noexcept {
 		left.swap(right);
+	}
+
+	template<class charT, class traits, class T>
+	std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits> &os,
+											 const shared_ptr<T> &myself) {
+		os << myself.get();
+		return os;
 	}
 
 	template<class T>
