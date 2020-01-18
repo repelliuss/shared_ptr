@@ -13,7 +13,7 @@
 * [General Info](#general-info)
 * [Example](#example)
 * [Features](#features)
-* [Usage](#usage)
+* [Setup](#setup)
 
 ## General Info
 *rps::shared_ptr* is for educational purposes. It's syntax is mostly identical **prior to C++17**. This library doesn't support aliasing constructor, relations with other types of *rps::shared_ptr*s, relation with unique_ptr and relation with weak_ptr.
@@ -31,6 +31,6 @@ shared_ptr<int> array_ptr(new int[10], default_delete<int[]>());
 * Names are descriptive so it is easier to follow and learn.
 * *rps::shared_ptr* uses same syntax as std::shared_ptr to use it quickly.
 
-## Usage
+## Setup
 1. Clone this repository to your project.
 2. `#include <repelliuss/shared_ptr>` and you are good to go.
