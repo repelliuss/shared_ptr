@@ -1,12 +1,12 @@
 <p align="center">
-  <img width="200" height="200" src="https://b.allthepics.net/rpsLogo.png">
+  <img width="200" height="200" src="https://i.imgur.com/VOIqPTP.png">
 </p>
 
 # rps::shared_ptr
 > C++ [std::shared_ptr](https://en.cppreference.com/w/cpp/memory/shared_ptr) implementation for fun!
 
 <p align="center">
-  <img width="470" height="380" src="https://b.allthepics.net/shared_ptrExample.png">
+  <img src="https://i.imgur.com/3DR5D62.png">
 </p>
 
 ## Table of contents
